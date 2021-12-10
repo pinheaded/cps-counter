@@ -39,11 +39,9 @@ module.exports = class CPSCounter extends Plugin {
             this.settings.set("_chromaInstance", chromaInstance);
         }
 
-        this.leftClick = this.registerLeftClick.bind(this);
-        this.rightClick = this.registerRightClick.bind(this);
+        this.mouseClick = this.registerMouseClick.bind(this);
 
-        document.addEventListener("click", this.leftClick);
-        document.addEventListener("contextmenu", this.rightClick);
+        document.addEventListener("mouseup", this.mouseClick);
 
         this.idkWhatToNameThis = setInterval(() => {
             if (this.leftClicks.length > 0 && new Date().getTime() - this.leftClicks[0] >= 1000) {
@@ -60,22 +58,22 @@ module.exports = class CPSCounter extends Plugin {
         )
     }
 
-    registerLeftClick(e) {
-        this.leftClicks.push(new Date().getTime());
-        try {document.getElementById("cpsCounterContainer").innerHTML = this.settings.get("showRightClick") ? `${this.leftClicks.length} | ${this.rightClicks.length} ${this.settings.get("cpsUnit", DEFAULT_CPS_UNIT)}` : `${this.leftClicks.length} ${this.settings.get("cpsUnit", DEFAULT_CPS_UNIT)}`;}
-        catch {}
-    }
-
-    registerRightClick(e) {
-        this.rightClicks.push(new Date().getTime());
+    registerMouseClick(e) {
+        if (typeof e === "object") {
+            switch (e.button) {
+                case 0: this.leftClicks.push(new Date().getTime());
+                    break;
+                
+                case 2: this.rightClicks.push(new Date().getTime());
+            }
+        }
         try {document.getElementById("cpsCounterContainer").innerHTML = this.settings.get("showRightClick") ? `${this.leftClicks.length} | ${this.rightClicks.length} ${this.settings.get("cpsUnit", DEFAULT_CPS_UNIT)}` : `${this.leftClicks.length} ${this.settings.get("cpsUnit", DEFAULT_CPS_UNIT)}`;}
         catch {}
     }
 
     pluginWillUnload() {
         clearInterval(this.idkWhatToNameThis);
-        document.removeEventListener("click", this.leftClick);
-        document.removeEventListener("contextmenu", this.rightClick);
+        document.removeEventListener("click", this.mouseClick);
         document.getElementById("cpsCounterContainer").remove();
         powercord.api.settings.unregisterSettings(this.entityID);
         this.leftClicks = [];
