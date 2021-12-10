@@ -73,7 +73,7 @@ module.exports = class CPSCounter extends Plugin {
 
     pluginWillUnload() {
         clearInterval(this.idkWhatToNameThis);
-        document.removeEventListener("click", this.mouseClick);
+        document.removeEventListener("mouseup", this.mouseClick);
         document.getElementById("cpsCounterContainer").remove();
         powercord.api.settings.unregisterSettings(this.entityID);
         this.leftClicks = [];
