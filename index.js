@@ -30,7 +30,7 @@ module.exports = class CPSCounter extends Plugin {
         little_baby.style.background = "transparent";
         little_baby.style.textAlign = "center";
         little_baby.style.color = this.settings.get("color", "white");
-        little_baby.innerHTML = this.settings.get("showRightClick") ? `0 | 0 ${this.settings.get("cpsUnit", DEFAULT_CPS_UNIT)}` : `0 ${this.settings.get("cpsUnit", DEFAULT_CPS_UNIT)}`;
+        little_baby.innerHTML = this.settings.get("showRightClick") ? `[ 0 | 0 ${this.settings.get("cpsUnit", DEFAULT_CPS_UNIT)} ]` : `[ 0 ${this.settings.get("cpsUnit", DEFAULT_CPS_UNIT)} ]`;
 
         parent.parentNode.insertBefore(little_baby, parent.nextSibling);
 
@@ -46,13 +46,13 @@ module.exports = class CPSCounter extends Plugin {
         this.idkWhatToNameThis = setInterval(() => {
             if (this.leftClicks.length > 0 && new Date().getTime() - this.leftClicks[0] >= 1000) {
                 this.leftClicks.shift();
-                try {little_baby.innerHTML = this.settings.get("showRightClick") ? `${this.leftClicks.length} | ${this.rightClicks.length} ${this.settings.get("cpsUnit", DEFAULT_CPS_UNIT)}` : `${this.leftClicks.length} ${this.settings.get("cpsUnit", DEFAULT_CPS_UNIT)}`;}
+                try {little_baby.innerHTML = this.settings.get("showRightClick") ? `[ ${this.leftClicks.length} | ${this.rightClicks.length} ${this.settings.get("cpsUnit", DEFAULT_CPS_UNIT)} ]` : `[ ${this.leftClicks.length} ${this.settings.get("cpsUnit", DEFAULT_CPS_UNIT)} ]`;}
                 catch {}
             }
 
             if (this.rightClicks.length > 0 && new Date().getTime() - this.rightClicks[0] >= 1000) {
                 this.rightClicks.shift();
-                try {little_baby.innerHTML = this.settings.get("showRightClick") ? `${this.leftClicks.length} | ${this.rightClicks.length} ${this.settings.get("cpsUnit", DEFAULT_CPS_UNIT)}` : `${this.leftClicks.length} ${this.settings.get("cpsUnit", DEFAULT_CPS_UNIT)}`;}
+                try {little_baby.innerHTML = this.settings.get("showRightClick") ? `[ ${this.leftClicks.length} | ${this.rightClicks.length} ${this.settings.get("cpsUnit", DEFAULT_CPS_UNIT)} ]` : `[ ${this.leftClicks.length} ${this.settings.get("cpsUnit", DEFAULT_CPS_UNIT)} ]`;}
                 catch {}
             }}, 1
         )
@@ -67,7 +67,7 @@ module.exports = class CPSCounter extends Plugin {
                 case 2: this.rightClicks.push(new Date().getTime());
             }
         }
-        try {document.getElementById("cpsCounterContainer").innerHTML = this.settings.get("showRightClick") ? `${this.leftClicks.length} | ${this.rightClicks.length} ${this.settings.get("cpsUnit", DEFAULT_CPS_UNIT)}` : `${this.leftClicks.length} ${this.settings.get("cpsUnit", DEFAULT_CPS_UNIT)}`;}
+        try {document.getElementById("cpsCounterContainer").innerHTML = this.settings.get("showRightClick") ? `[ ${this.leftClicks.length} | ${this.rightClicks.length} ${this.settings.get("cpsUnit", DEFAULT_CPS_UNIT)} ]` : `[ ${this.leftClicks.length} ${this.settings.get("cpsUnit", DEFAULT_CPS_UNIT)} ]`;}
         catch {}
     }
 
