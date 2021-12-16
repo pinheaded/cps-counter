@@ -38,14 +38,16 @@ module.exports = class CPSCounterSettings extends React.PureComponent {
                     </SwitchItem>
 
                     {this.props.getSetting("seperateClickColor", false) === true &&
-                        <ColorPickerInput
-                            className = "cpsSettingsClickColorPickerInput"
-                            value = {ColorUtils.hex2int(this.props.getSetting("clickColor", this.props.getSetting("color", "#ffffff")))}
-                            onChange = {(arg) => {
-                                this.props.updateSetting("clickColor", ColorUtils.int2hex(arg));
-                            }}>
-                            {Labels.ALT_COLOR}
-                        </ColorPickerInput>
+                        <div className = "cpsSettingsClickColorPickerInputContainer">
+                            <ColorPickerInput
+                                className = "cpsSettingsClickColorPickerInput"
+                                value = {ColorUtils.hex2int(this.props.getSetting("clickColor", this.props.getSetting("color", "#ffffff")))}
+                                onChange = {(arg) => {
+                                    this.props.updateSetting("clickColor", ColorUtils.int2hex(arg));
+                                }}>
+                                {Labels.ALT_COLOR}
+                            </ColorPickerInput>
+                        </div>
                     }
 
                     <div className = "divider-3573oO dividerDefault-3rvLe-"/>
@@ -86,7 +88,7 @@ module.exports = class CPSCounterSettings extends React.PureComponent {
 
                     <style>
                     {`
-                        @keyframes load-in {
+                        @keyframes loadIn {
                             from {
                                 opacity: 0;
                                 margin-top: -10px;
@@ -103,7 +105,11 @@ module.exports = class CPSCounterSettings extends React.PureComponent {
                             border-radius: 10px;
                             box-shadow: var(--elevation-high);
                             padding: 20px 20px 20px 20px;
-                            animation-name: load-in;
+                        }
+
+                        .cpsSettingsMainSettingsContainer,
+                        .cpsSettingsClickColorPickerInputContainer {
+                            animation-name: loadIn;
                             animation-duration: 0.69s;
                             animation-iteration-count: 1;
                             margin-top: 0;
