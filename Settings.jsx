@@ -14,7 +14,6 @@ module.exports = class CPSCounterSettings extends React.PureComponent {
                 </div>
                 <div className="cpsSettingsMainSettingsContainer">
                     <ColorPickerInput
-                        className = "cpsSettingsColorPickerInput"
                         value = {ColorUtils.hex2int(this.props.getSetting("color", "#ffffff"))}
                         onChange = {(arg) => {
                             this.props.updateSetting("color", ColorUtils.int2hex(arg));
@@ -40,7 +39,6 @@ module.exports = class CPSCounterSettings extends React.PureComponent {
                     {this.props.getSetting("seperateClickColor", false) === true &&
                         <div className = "cpsSettingsClickColorPickerInputContainer">
                             <ColorPickerInput
-                                className = "cpsSettingsClickColorPickerInput"
                                 value = {ColorUtils.hex2int(this.props.getSetting("clickColor", this.props.getSetting("color", "#ffffff")))}
                                 onChange = {(arg) => {
                                     this.props.updateSetting("clickColor", ColorUtils.int2hex(arg));
