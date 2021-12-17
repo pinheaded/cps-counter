@@ -66,7 +66,6 @@ module.exports = class CPSCounter extends Plugin {
             mutationsList.forEach(mutation => {
                 mutation.removedNodes.forEach(removedNode => {
                     if (removedNode.className == "typeWindows-1za-n7 withFrame-haYltI titleBar-AC4pGV horizontalReverse-3tRjY7 flex-1O1GKY directionRowReverse-m8IjIq justifyStart-2NDFzi alignStretch-DpGPf3") {
-                        console.log("DOM Has been fucked with");
                         setTimeout(() => {
                             this.addCounter();
                             theCounter = document.getElementById("cpsCounterContainer");
