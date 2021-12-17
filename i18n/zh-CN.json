@@ -1,0 +1,10 @@
+{
+    "CC_DESCRIPTION": "'CPS'是个英语词代表你每秒钟点击了多少次。使用下面的设置来改变上面的数数机!",
+    "CC_COLOR": "数字颜色",
+    "CC_ALT_COLOR": "按下颜色",
+    "CC_PRIDE_MODE_SWITCH": "彩虹数字 (替换普通颜色)",
+    "CC_RIGHT_CLICK_SWITCH": "给右键加个数数机",
+    "CC_CPS_UNIT": "点击单元",
+    "CC_CPS_UNIT_PLACEHOLDER": "打印些东西...",
+    "CC_I_SUCK_AT_THIS_LANGUAGE": "对不起我的中文不是太好 :("
+}

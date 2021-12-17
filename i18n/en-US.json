@@ -1,0 +1,10 @@
+{
+    "CC_DESCRIPTION": "CPS stands for Clicks Per Second, or how many times you are clicking in a second. Use these settings to config the counter at the top of the window to your liking!",
+    "CC_COLOR": "Text Color",
+    "CC_ALT_COLOR": "Seperate Click Color",
+    "CC_PRIDE_MODE_SWITCH": "Pride Mode (overrides text color)",
+    "CC_RIGHT_CLICK_SWITCH": "Show Right Click CPS",
+    "CC_CPS_UNIT": "CPS UNIT",
+    "CC_CPS_UNIT_PLACEHOLDER": "Enter Something...",
+    "CC_I_SUCK_AT_THIS_LANGUAGE": ""
+}

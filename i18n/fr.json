@@ -1,0 +1,10 @@
+{
+    "CC_DESCRIPTION": "Le terme 'CPS' (Cliques Par Seconde) représente combien de fois tu cliques dans une seconde. Utilise ces paramètres à configurer le compteur au-dessus!",
+    "CC_COLOR": "Couleur du compteur",
+    "CC_ALT_COLOR": "Couleur différent en cliquant",
+    "CC_PRIDE_MODE_SWITCH": "Compteur arc-en-ciel (invalides les paramètres au-dessus)",
+    "CC_RIGHT_CLICK_SWITCH": "Montrer tes CPS pour le bouton de souris droit",
+    "CC_CPS_UNIT": "Unité sur le compteur",
+    "CC_CPS_UNIT_PLACEHOLDER": "Entrer Quelque Chose...",
+    "CC_I_SUCK_AT_THIS_LANGUAGE": "Désolé, je ne parle pas très bien le français :("
+}

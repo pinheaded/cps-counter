@@ -1,16 +1,16 @@
-const { React, getModule } = require("powercord/webpack");
+const { React, getModule, i18n: { Messages } } = require("powercord/webpack");
 const { ColorPickerInput, SwitchItem, TextInput } = require("powercord/components/settings");
 
 const ColorUtils = getModule(["isValidHex"], false);
 const marginTopPixels = 15;
-const { DEFAULT_CPS_UNIT, PRIDE_MODE_KEYFRAMES, Labels } = require("./constants");
+const { DEFAULT_CPS_UNIT, PRIDE_MODE_KEYFRAMES } = require("./constants");
 
 module.exports = class CPSCounterSettings extends React.PureComponent {
     render() {
         return(
             <div className="cpsSettings">
                 <div className="description-3_Ncsb formText-3fs7AJ marginBottom20-32qID7 modeDefault-3a2Ph1 primary-jw0I4K">
-                    {Labels.DESCRIPTION}
+                    {Messages.CC_DESCRIPTION}
                 </div>
                 <div className="cpsSettingsMainSettingsContainer" id = "cpsSettingsMainSettingsContainer">
                     <ColorPickerInput
@@ -20,7 +20,7 @@ module.exports = class CPSCounterSettings extends React.PureComponent {
                             this.props.updateSetting("color", ColorUtils.int2hex(arg));
                             document.getElementById("cpsCounterContainer").style.color = ColorUtils.int2hex(arg);
                         }}>
-                        {Labels.COLOR}
+                        {Messages.CC_COLOR}
                     </ColorPickerInput>
 
                     <SwitchItem
@@ -35,7 +35,7 @@ module.exports = class CPSCounterSettings extends React.PureComponent {
                                 this.props.updateSetting("clickColor", undefined);
                             }
                         }}>
-                        {Labels.ALT_COLOR}
+                        {Messages.CC_ALT_COLOR}
                     </SwitchItem>
 
                     {this.props.getSetting("seperateClickColor", false) === true &&
@@ -46,7 +46,7 @@ module.exports = class CPSCounterSettings extends React.PureComponent {
                                 onChange = {(arg) => {
                                     this.props.updateSetting("clickColor", ColorUtils.int2hex(arg));
                                 }}>
-                                {Labels.ALT_COLOR}
+                                {Messages.CC_ALT_COLOR}
                             </ColorPickerInput>
                         </div>
                     }
@@ -68,7 +68,7 @@ module.exports = class CPSCounterSettings extends React.PureComponent {
                                 chromaInstance.cancel();
                             }
                         }}>
-                        {Labels.PRIDE_MODE_SWITCH}
+                        {Messages.CC_PRIDE_MODE_SWITCH}
                     </SwitchItem>
 
                     <SwitchItem
@@ -76,15 +76,15 @@ module.exports = class CPSCounterSettings extends React.PureComponent {
                         style = {{"margin-top": `${marginTopPixels}px`}}
                         value = {this.props.getSetting("showRightClick", false)}
                         onChange = {(arg) => {this.props.updateSetting("showRightClick", arg)}}>
-                        {Labels.RIGHT_CLICK_SWITCH}
+                        {Messages.CC_RIGHT_CLICK_SWITCH}
                     </SwitchItem>
 
                     <TextInput
                         className = "cpsSettingsUnitInput"
-                        placeholder = {Labels.CPS_UNIT_PLACEHOLDER}
+                        placeholder = {Messages.CC_CPS_UNIT_PLACEHOLDER}
                         value = {this.props.getSetting("cpsUnit", DEFAULT_CPS_UNIT)}
                         onChange = {(arg) => {this.props.updateSetting("cpsUnit", arg)}}>
-                        {Labels.CPS_UNIT}
+                        {Messages.CC_CPS_UNIT}
                     </TextInput>
 
                     <style>
@@ -127,6 +127,11 @@ module.exports = class CPSCounterSettings extends React.PureComponent {
                         }
                     `}
                     </style>
+                </div>
+                <div 
+                    className="description-3_Ncsb formText-3fs7AJ marginBottom20-32qID7 modeDefault-3a2Ph1 primary-jw0I4K"
+                    style={{"margin-top": "20px"}}>
+                    {Messages.CC_I_SUCK_AT_THIS_LANGUAGE}
                 </div>
             </div>
         )
