@@ -10,6 +10,10 @@ module.exports = class CPSCounter extends Plugin {
     rightClicks = [];
     entityID = "cps-counter";
 
+    get color() {
+        return "#b643b6";
+    }
+
     startPlugin() {
         powercord.api.settings.registerSettings(
             this.entityID,
@@ -70,6 +74,7 @@ module.exports = class CPSCounter extends Plugin {
                             this.addCounter();
                             theCounter = document.getElementById("cpsCounterContainer");
                             if (this.settings.get("prideMode", false) === true) {
+                                theCounter.classList.add(["prideMode"]);
                                 let chromaInstance = this.cpsCounterContainer.animate(PRIDE_MODE_KEYFRAMES, {
                                     duration: 5000, iterations: Infinity
                                 });
@@ -85,6 +90,14 @@ module.exports = class CPSCounter extends Plugin {
     }
 
     registerMouseClick(e) {
+        this.cpsCounterContainer.classList.remove(["mouseDown"]);
+        if (this.settings.get("prideMode", false) === true) {
+            let chromaInstance = this.settings.get("_chromaInstance");
+            chromaInstance.play();
+            if (this.settings.get("seperateClickColor", false) === true) {
+                chromaInstance.currentTime = this.chromaCurrentTime;
+            }
+        }
         if (typeof e === "object") {
             switch (e.button) {
                 case 0: this.leftClicks.push(new Date().getTime());
@@ -106,8 +119,14 @@ module.exports = class CPSCounter extends Plugin {
     onMouseDown(_) {
         if (this.settings.get("seperateClickColor", false) === true) {
             try {
+                if (this.settings.get("prideMode", false) === true) {
+                    let chromaInstance = this.settings.get("_chromaInstance");
+                    this.chromaCurrentTime = chromaInstance.currentTime;
+                    chromaInstance.cancel();
+                }
                 let defaultColor = this.settings.get("color", "#ffffff");
                 this.cpsCounterContainer.style.color = this.settings.get("clickColor", this.settings.get("color", defaultColor));
+                this.cpsCounterContainer.classList.add(["mouseDown"]);
             }
             catch {}
         }

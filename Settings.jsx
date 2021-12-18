@@ -27,7 +27,6 @@ module.exports = class CPSCounterSettings extends React.PureComponent {
                         className = "cpsSettingsSeperateClickColorSwitch"
                         id = "cpsSettingsSeperateClickColorSwitch"
                         style = {{"margin-top": `${marginTopPixels}px`}}
-                        disabled = {this.props.getSetting("prideMode", false)}
                         value = {this.props.getSetting("seperateClickColor", false)}
                         onChange = {(arg) => {
                             this.props.updateSetting("seperateClickColor", arg)
@@ -42,7 +41,6 @@ module.exports = class CPSCounterSettings extends React.PureComponent {
                         <div className = "cpsSettingsClickColorPickerInputContainer">
                             <ColorPickerInput
                                 value = {ColorUtils.hex2int(this.props.getSetting("clickColor", this.props.getSetting("color", "#ffffff")))}
-                                disabled = {this.props.getSetting("prideMode", false)}
                                 onChange = {(arg) => {
                                     this.props.updateSetting("clickColor", ColorUtils.int2hex(arg));
                                 }}>
@@ -62,10 +60,12 @@ module.exports = class CPSCounterSettings extends React.PureComponent {
                             if (arg === true) {
                                 let chromaInstance = document.getElementById("cpsCounterContainer").animate(PRIDE_MODE_KEYFRAMES, {duration: 5000, iterations: Infinity});
                                 this.props.updateSetting("_chromaInstance", chromaInstance);
+                                document.getElementById("cpsCounterContainer").classList.add(["prideMode"]);
                             }
                             else {
-                                let chromaInstance = this.props.getSetting("_chromaInstance")
+                                let chromaInstance = this.props.getSetting("_chromaInstance");
                                 chromaInstance.cancel();
+                                document.getElementById("cpsCounterContainer").classList.remove(["prideMode"]);
                             }
                         }}>
                         {Messages.CC_PRIDE_MODE_SWITCH}
@@ -86,53 +86,52 @@ module.exports = class CPSCounterSettings extends React.PureComponent {
                         onChange = {(arg) => {this.props.updateSetting("cpsUnit", arg)}}>
                         {Messages.CC_CPS_UNIT}
                     </TextInput>
-
-                    <style>
-                    {`
-                        @keyframes loadIn {
-                            from {
-                                opacity: 0;
-                                margin-top: -10px;
-                            }
-                            to {
-                                opacity: 1;
-                                margin-top: 0;
-                            }
-                        }
-
-                        .cpsSettingsMainSettingsContainer {
-                            background: var(--background-secondary);
-                            backdrop-filter: blur(10px);
-                            border-radius: 10px;
-                            box-shadow: var(--elevation-high);
-                            padding: 20px 20px 20px 20px;
-                        }
-
-                        .cpsSettingsMainSettingsContainer,
-                        .cpsSettingsClickColorPickerInputContainer {
-                            animation-name: loadIn;
-                            animation-duration: 0.69s;
-                            animation-iteration-count: 1;
-                            margin-top: 0;
-                        }
-
-                        .cpsSettingsSeperateClickColorSwitch + div .divider-3573oO.dividerDefault-3rvLe-,
-                        .cpsSettingsSeperateClickColorSwitch > div[class*="divider-"],
-                        .cpsSettingsUnitInput + div[class*="divider-"] {
-                            display: none;
-                        }
-
-                        .cpsSettingsMainSettingsContainer .disabled-2HSEFa .title-31JmR4 {
-                            color: #969696;
-                        }
-                    `}
-                    </style>
                 </div>
                 <div 
                     className="description-3_Ncsb formText-3fs7AJ marginBottom20-32qID7 modeDefault-3a2Ph1 primary-jw0I4K"
                     style={{"margin-top": "20px"}}>
                     {Messages.CC_I_SUCK_AT_THIS_LANGUAGE}
                 </div>
+                <style>
+                {`
+                    @keyframes loadIn {
+                        from {
+                            opacity: 0;
+                            margin-top: -10px;
+                        }
+                        to {
+                            opacity: 1;
+                            margin-top: 0;
+                        }
+                    }
+
+                    .cpsSettingsMainSettingsContainer {
+                        background: var(--background-secondary);
+                        backdrop-filter: blur(10px);
+                        border-radius: 10px;
+                        box-shadow: var(--elevation-high);
+                        padding: 20px 20px 20px 20px;
+                    }
+
+                    .cpsSettingsMainSettingsContainer,
+                    .cpsSettingsClickColorPickerInputContainer {
+                        animation-name: loadIn;
+                        animation-duration: 0.69s;
+                        animation-iteration-count: 1;
+                        margin-top: 0;
+                    }
+
+                    .cpsSettingsSeperateClickColorSwitch + div .divider-3573oO.dividerDefault-3rvLe-,
+                    .cpsSettingsSeperateClickColorSwitch > div[class*="divider-"],
+                    .cpsSettingsUnitInput + div[class*="divider-"] {
+                        display: none;
+                    }
+
+                    .cpsSettingsMainSettingsContainer .disabled-2HSEFa .title-31JmR4 {
+                        color: #969696;
+                    }
+                `}
+                </style>
             </div>
         )
     }
