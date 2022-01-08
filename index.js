@@ -69,7 +69,7 @@ module.exports = class CPSCounter extends Plugin {
         this.observer = new MutationObserver(mutationsList => {
             mutationsList.forEach(mutation => {
                 mutation.removedNodes.forEach(removedNode => {
-                    if (removedNode.className == "typeWindows-1za-n7 withFrame-haYltI titleBar-AC4pGV horizontalReverse-3tRjY7 flex-1O1GKY directionRowReverse-m8IjIq justifyStart-2NDFzi alignStretch-DpGPf3") {
+                    if (removedNode.className == "typeWindows-2-g3UY withFrame-2dL45i titleBar-1it3bQ horizontalReverse-2QssvL flex-3BkGQD directionRowReverse-HZatnx justifyStart-2Mwniq alignStretch-Uwowzr") {
                         setTimeout(() => {
                             this.addCounter();
                             theCounter = document.getElementById("cpsCounterContainer");
@@ -133,7 +133,7 @@ module.exports = class CPSCounter extends Plugin {
     }
 
     addCounter() {
-        var parent = document.querySelector(".flexCenter-3_1bcw.flex-1O1GKY.justifyCenter-3D2jYp.alignCenter-1dQNNs:last-child");
+        var parent = document.querySelector(".flexCenter-1Mwsxg.flex-3BkGQD.justifyCenter-rrurWZ.alignCenter-14kD11:last-child");
         var little_baby = document.createElement("div");
 
         little_baby.className = "cpsCounterContainer";
