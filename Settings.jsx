@@ -9,7 +9,7 @@ module.exports = class CPSCounterSettings extends React.PureComponent {
     render() {
         return(
             <div className="cpsSettings">
-                <div className="description-3_Ncsb formText-3fs7AJ marginBottom20-32qID7 modeDefault-3a2Ph1 primary-jw0I4K">
+                <div className="description-30xx7u formText-2ngGjI marginBottom20-315RVT modeDefault-2fEh7a">
                     {Messages.CC_DESCRIPTION}
                 </div>
                 <div className="cpsSettingsMainSettingsContainer" id = "cpsSettingsMainSettingsContainer">
@@ -88,7 +88,7 @@ module.exports = class CPSCounterSettings extends React.PureComponent {
                     </TextInput>
                 </div>
                 <div 
-                    className="description-3_Ncsb formText-3fs7AJ marginBottom20-32qID7 modeDefault-3a2Ph1 primary-jw0I4K"
+                    className="description-30xx7u formText-2ngGjI marginBottom20-315RVT modeDefault-2fEh7a"
                     style={{"margin-top": "20px"}}>
                     {Messages.CC_I_SUCK_AT_THIS_LANGUAGE}
                 </div>
