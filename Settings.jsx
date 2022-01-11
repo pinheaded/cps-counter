@@ -29,15 +29,15 @@ module.exports = class CPSCounterSettings extends React.PureComponent {
                         style = {{"margin-top": `${marginTopPixels}px`}}
                         value = {this.props.getSetting("seperateClickColor", false)}
                         onChange = {(arg) => {
-                            this.props.updateSetting("seperateClickColor", arg)
-                            if (arg === false) {
-                                this.props.updateSetting("clickColor", undefined);
+                            this.props.updateSetting("seperateClickColor", arg);
+                            if (!arg) {
+                                this.props.updateSetting("clickColor", null);
                             }
                         }}>
                         {Messages.CC_ALT_COLOR}
                     </SwitchItem>
 
-                    {this.props.getSetting("seperateClickColor", false) === true &&
+                    {this.props.getSetting("seperateClickColor", false) &&
                         <div className = "cpsSettingsClickColorPickerInputContainer">
                             <ColorPickerInput
                                 value = {ColorUtils.hex2int(this.props.getSetting("clickColor", this.props.getSetting("color", "#ffffff")))}
@@ -57,15 +57,15 @@ module.exports = class CPSCounterSettings extends React.PureComponent {
                         value = {this.props.getSetting("prideMode", false)}
                         onChange = {(arg) => {
                             this.props.updateSetting("prideMode", arg);
-                            if (arg === true) {
-                                let chromaInstance = document.getElementById("cpsCounterContainer").animate(PRIDE_MODE_KEYFRAMES, {duration: 5000, iterations: Infinity});
+                            if (arg) {
+                                const chromaInstance = document.getElementById("cpsCounterContainer").animate(PRIDE_MODE_KEYFRAMES, {duration: 5000, iterations: Infinity});
                                 this.props.updateSetting("_chromaInstance", chromaInstance);
-                                document.getElementById("cpsCounterContainer").classList.add(["prideMode"]);
+                                document.getElementById("cpsCounterContainer").classList.add("prideMode");
                             }
                             else {
-                                let chromaInstance = this.props.getSetting("_chromaInstance");
+                                const chromaInstance = this.props.getSetting("_chromaInstance");
                                 chromaInstance.cancel();
-                                document.getElementById("cpsCounterContainer").classList.remove(["prideMode"]);
+                                document.getElementById("cpsCounterContainer").classList.remove("prideMode");
                             }
                         }}>
                         {Messages.CC_PRIDE_MODE_SWITCH}
@@ -75,7 +75,7 @@ module.exports = class CPSCounterSettings extends React.PureComponent {
                         className = "cpsSettingsRightClickSwitch"
                         style = {{"margin-top": `${marginTopPixels}px`}}
                         value = {this.props.getSetting("showRightClick", false)}
-                        onChange = {(arg) => {this.props.updateSetting("showRightClick", arg)}}>
+                        onChange = {(arg) => {this.props.updateSetting("showRightClick", arg);}}>
                         {Messages.CC_RIGHT_CLICK_SWITCH}
                     </SwitchItem>
 
@@ -83,11 +83,11 @@ module.exports = class CPSCounterSettings extends React.PureComponent {
                         className = "cpsSettingsUnitInput"
                         placeholder = {Messages.CC_CPS_UNIT_PLACEHOLDER}
                         value = {this.props.getSetting("cpsUnit", DEFAULT_CPS_UNIT)}
-                        onChange = {(arg) => {this.props.updateSetting("cpsUnit", arg)}}>
+                        onChange = {(arg) => {this.props.updateSetting("cpsUnit", arg);}}>
                         {Messages.CC_CPS_UNIT}
                     </TextInput>
                 </div>
-                <div 
+                <div
                     className="description-30xx7u formText-2ngGjI marginBottom20-315RVT modeDefault-2fEh7a"
                     style={{"margin-top": "20px"}}>
                     {Messages.CC_I_SUCK_AT_THIS_LANGUAGE}
@@ -133,6 +133,6 @@ module.exports = class CPSCounterSettings extends React.PureComponent {
                 `}
                 </style>
             </div>
-        )
+        );
     }
-}
+};
