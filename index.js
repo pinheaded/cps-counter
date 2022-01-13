@@ -91,7 +91,8 @@ module.exports = class CPSCounter extends Plugin {
             const chromaInstance = this.settings.get("_chromaInstance");
             chromaInstance.play();
             if (this.settings.get("seperateClickColor", false)) {
-                chromaInstance.currentTime = this.chromaCurrentTime;
+                try {chromaInstance.currentTime = this.chromaCurrentTime;}
+                catch {}
             }
         }
         if (typeof e === "object") {
